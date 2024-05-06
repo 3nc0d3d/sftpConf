@@ -1,0 +1,36 @@
+
+# The user belongs to group A
+Match Group group_a
+        ForceCommand internal-sftp
+
+        #ChrootDirectory /
+        ChrootDirectory /sftpFiles/chroot_a
+
+        PermitTunnel no
+        AllowAgentForwarding no
+        AllowTcpForwarding no
+        X11Forwarding no
+
+ # The user belongs to group B
+ Match Group group_b
+        ForceCommand internal-sftp
+
+        #ChrootDirectory 
+        ChrootDirectory /sftpFiles/chroot_b
+
+        PermitTunnel no
+        AllowAgentForwarding no
+        AllowTcpForwarding no
+        X11Forwarding no
+
+ # The user belongs to group C
+ Match Group group_c
+       ForceCommand internal-sftp
+
+       #ChrootDirectory 
+       ChrootDirectory /sftpFiles/chroot_c
+
+       PermitTunnel no
+       AllowAgentForwarding no
+       AllowTcpForwarding no
+       X11Forwarding no
