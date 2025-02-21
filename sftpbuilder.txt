@@ -1,58 +1,53 @@
-# Installiammo openssh
+# Let's install openssh
 sudo apt update
 sudo apt install openssh-server
-# verifichiamo che il servizio sia attivo
+# Let's verify that the service is active
 sudo systemctl status ssh
 
-
-
-
-# Directory home che conterranno le home directory dei diversi utenti
+# Home directory that will contain the home directories of the different users
 mkdir ./sftpFiles/
 
-# Il proprietario di questa cartella deve essere root e solo il root potrà scriver
-# Impostiamo come proprietario il root e il gruppo root
+# The owner of this folder must be root and only root will be able to write
+# Let's set root as the owner and the root group
 sudo chown root:root ./sftpFiles
-#Impostiamo lettura, scrittura ed esecuzione per il root lettura ed esecuzione per il gruppo root per tutti gli altri
+# Let's set read, write and execute for the root read and execute for the root group for all others
 sudo chmod 755 ./sftpFile
 
-# le cartelle home per ciascun gruppo avranno gli stessi permessii della precedenti
-# non devono essere scrivibili dagli utenti
-mkdir ./sftpFiles/azienda1
-mkdir ./sftpFiles/azienda2
-mkdir ./sftpFiles/azienda3
+# The home folders for each group will have the same permissions as the previous ones
+# They must not be writable by users
+mkdir ./sftpFiles/company1
+mkdir ./sftpFiles/company2
+mkdir ./sftpFiles/company3
 
-sudo chown root:root ./sftpFiles/azienda1 
-sudo chown root:root ./sftpFiles/azienda2 
-sudo chown root:root ./sftpFiles/azienda3
+sudo chown root:root ./sftpFiles/company1
+sudo chown root:root ./sftpFiles/company2
+sudo chown root:root ./sftpFiles/company3
 
-sudo chmod 755 ./sftpFiles/azienda1
-sudo chmod 755 ./sftpFiles/azienda2
-sudo chmod 755 ./sftpFiles/azienda3
+sudo chmod 755 ./sftpFiles/company1
+sudo chmod 755 ./sftpFiles/company2
+sudo chmod 755 ./sftpFiles/company3
 
-# All'interno delle home ci saranno delle cartelle all'interno delle 
-# quali sarà possibile a seconda dei permessi mediante ACL (che vedremo dopo) gli utenti potranno anche scrivere
-mkdir ./sftpFiles/azienda1/commerciali
-mkdir ./sftpFiles/azienda1/tecnici
-mkdir ./sftpFiles/azienda2/amministrativi
-mkdir ./sftpFiles/azienda3/documentazione
+# Inside the home directories there will be folders inside which
+# it will be possible depending on the permissions by means of ACL (which we will see later) users can also write
+mkdir ./sftpFiles/company1/sales
+mkdir ./sftpFiles/company1/technicians
+mkdir ./sftpFiles/company2/administrative
+mkdir ./sftpFiles/company3/documentation
 
-# La creazioni dei gruppi per azienda serviranno nella configurazione 
-# dellì'sftp a 'direzionare" gli uitenti nella giusta
-sudo groupadd g_azienda_1
-sudo groupadd g_azienda_2
-sudo groupadd g_azienda_3
+# The creation of groups by company will be used in the configuration
+# of the sftp to "direct" the users to the correct one
+sudo groupadd g_company_1
+sudo groupadd g_company_2
+sudo groupadd g_company_3
 
-# Creiamo gli utenti e gli assegniamo ad un gruppo 
-# il parametro '-s' assicura che l'utente sia abilitato solo all'uso 
-# dell'sftp e non dell'SSH
-sudo useradd -g g_azienda_1 -s /sbin/nologin user_1_a1
-sudo useradd -g g_azienda_1 -s /sbin/nologin user_2_a1
-sudo adduser -g g_azienda_1 -s /sbin/nologin user_3_a1
+# Let's create the users and assign them to a group
+# the '-s' parameter ensures that the user is enabled only for the use
+# of the sftp and not the SSH
+sudo useradd -g g_company_1 -s /sbin/nologin user_1_c1
+sudo useradd -g g_company_1 -s /sbin/nologin user_2_c1
+sudo adduser -g g_company_1 -s /sbin/nologin user_3_c1
 
-sudo adduser -g g_azienda_2 -s /sbin/nologin user_1_a2
-sudo adduser -g g_azienda_2 -s /sbin/nologin user_2_a2
+sudo adduser -g g_company_2 -s /sbin/nologin user_1_c2
+sudo adduser -g g_company_2 -s /sbin/nologin user_2_c2
 
-sudo adduser -g g_azienda_3 -s /sbin/nologin user_1_a3
-
-
+sudo adduser -g g_company_3 -s /sbin/nologin user_1_c3
